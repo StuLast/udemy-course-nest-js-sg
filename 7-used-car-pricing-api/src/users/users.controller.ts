@@ -16,9 +16,9 @@ import { UpdateUserDTO } from './dtos/update-user.dto';
 import { UserDTO } from './dtos/user.dto';
 import { AuthService } from './auth.service';
 import { UsersService } from './users.service';
-import { Serialize } from 'src/interceptors/serializeInterceptor';
+import { Serialize } from '../../src/interceptors/serializeInterceptor';
 import { CurrentUser } from './decorators/current-user.decorator';
-import { AuthGuard } from 'src/guards/auth.guard';
+import { AuthGuard } from '../../src/guards/auth.guard';
 
 import { User } from './user.entity';
 
@@ -66,7 +66,8 @@ export class UsersController {
 
   @Get('/:id')
   findUser(@Param('id') id: string) {
-    return this.usersService.findOne(parseInt(id));
+    const user = this.usersService.findOne(parseInt(id));
+    return user;
   }
 
   @Patch(':id')
